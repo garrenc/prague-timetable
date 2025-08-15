@@ -57,14 +57,24 @@ class Route {
   factory Route.fromJson(Map<String, dynamic> json) {
     var transportType = TransportType.parse(json['type']);
     var linkName = json['short_name'];
-    var metroLine = transportType == TransportType.metro ? MetroLine.values.firstWhere((e) => e.name == linkName.toString()) : null;
+    MetroLine? metroLine;
+
+    if (transportType == TransportType.metro) {
+      try {
+        metroLine = MetroLine.values.firstWhere((e) => e.name == linkName.toString());
+      } catch (e) {
+        // If metro line not found, keep it null
+        metroLine = null;
+      }
+    }
+
     return Route(transportType: transportType, linkName: linkName, metroLine: metroLine);
   }
 
   Color get color {
     switch (transportType) {
       case TransportType.metro:
-        return metroLine!.color;
+        return metroLine?.color ?? Colors.grey; // Safe null check
       case TransportType.tram:
         return Colors.brown;
       case TransportType.bus:
