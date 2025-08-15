@@ -20,7 +20,7 @@ Flutter application for viewing Prague public transport timetables using the Gol
 
 ```bash
 git clone <repository-url>
-cd timetable
+cd prague-timetable
 flutter pub get
 ```
 
