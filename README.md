@@ -22,6 +22,7 @@ Flutter application for viewing Prague public transport timetables using the Gol
 git clone <repository-url>
 cd prague-timetable
 flutter pub get
+dart run build_runner watch
 ```
 
 ### 2. Configure API Token
